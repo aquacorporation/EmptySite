@@ -1,0 +1,16 @@
+﻿@{
+  
+    var db = Database.Open("silver_db");
+    var data = db.Query("SELECT DESCRICAO, COD_UNID FROM UNIDADES");
+    var myChart = new Chart(width: 480,
+                        height: 278,
+                        theme: ChartTheme.Blue)
+        .AddTitle("Product Sales")
+        .AddSeries("Default", chartType: "Pie",
+            xValue: data, xField: "DESCRICAO",
+            yValues: data, yFields: "COD_UNID")
+        .Write();
+}
+
+}
+

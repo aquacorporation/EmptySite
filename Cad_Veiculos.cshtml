@@ -1,0 +1,161 @@
+﻿@{
+    Layout = "/shared/_main.cshtml";
+
+    var placa = Request["placa"];
+    var tipo = Request["tipo"];
+    var operacao = Request["operacao"];
+    var paletes = Request["paletes"];
+    var message = "";
+    var erro = false;
+
+    var db = Database.Open("silver_db");
+
+    if(IsPost){
+        
+        placa = Request["placa"];
+        if(placa.IsEmpty()){
+            erro = true;
+            @: Favor informar uma placa. <br>
+
+        }
+        tipo = Request["tipo"];
+        if(tipo.IsEmpty()){
+            erro = true;
+            @: Favor informar uma placa. <br>
+        }
+        operacao = Request["operacao"];
+        if(operacao.IsEmpty()){
+            erro = true;
+            @: Favor informar nome da operação. <br>
+        }
+        paletes = Request["paletes"];
+        if(paletes.IsEmpty()){
+            erro = true;
+            @: Favor informar a quantidade de paletes. <br>
+        }
+        if(erro == false){
+            var strSql = "INSERT INTO FROTA (placa, tipo, operacao, qtde_palete) VALUES (@0, @1, @2, @3)";
+            var result = db.Execute(strSql, placa, tipo, operacao, paletes.AsInt());
+
+            if(result == 1){
+                
+                message = "Veículo cadastrado com sucesso!";
+            }
+            else{
+                
+                message = "Erro ao cadastrar veículo. Veículo não cadastrado.";
+            }
+        }
+    }
+    
+}
+
+            <!--Formulário-->
+            <div id="cadastro">
+
+                <form id="frmCadVeic" action="" method="post">
+                    <fieldset>
+                        <legend>Cadastro de veículos</legend>
+                            <table class="cadVeiculo" >
+                                <!--1° linha-->
+                                <tr>
+                                    <!--1° coluna-->
+                                    <td>
+                                        <br>
+                                        <label for="txtPlaca">Placa:</label>
+                                    </td>
+                                    <!--2° coluna-->
+                                    <td>
+                                        <br>
+                                        <input type="text" id="txtPlaca" value="@placa" name="txtNome" />
+                                    </td>
+                                    <!--3° coluna(vazia para criar espaçamento entre as colunas do formulário-->
+                                    <td class="tdvazio">
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <label for="txtFabricante">Fabricante:</label>
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <input type="text" id="txtFabricante" value="" name="txtFabricante" />
+                                    </td>
+                                
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="txtTipo">Tipo:</label>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" id="txtTipo" value="@tipo" name="txtTipo" />
+                                    </td>
+                                    <td class="tdvazio">
+                                    </td>
+                                    <td>
+                                        <label for="txtModelo">Modelo:</label>                                    
+                                    </td>
+                                    <td>
+                                        <input type="text" value="" id="txtModelo" name="txtModelo" />
+                                    </td>
+                                
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="txtOperacao">Operação:</label>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" id="txtOperacao" value="@operacao" name="txtOperacao" />
+                                    </td>
+                                    <td class="tdvazio">
+                                    </td>
+                                    <td>
+                                        <label for="txtModelo">km rodados:</label>                                    
+                                    </td>
+                                    <td>
+                                        <input type="text" value="" id="txtkm" name="txtkm" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                         <label for="txtPaletes">Qtde Paletes:</label>
+                                    </td>
+                                    <td>
+                                         <input type="text" id="txtPaletes" value="@paletes" name="txtPaletes" />
+                                    </td>
+                                    <td class="tdvazio">
+                                    </td>
+                                    <td>
+                                        <label for="txtModelo">Data de aquisição:</label>                                    
+                                    </td>
+                                    <td>
+                                        <input type="text" value="" id="txtAquisicao" name="txtAquisicao" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <br>
+                                        <input type="submit" value="Save" id="btnSave" name="btnSave" />
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <input type="submit" value="Limpar" id="btnLimpar" name="btnLimpar" />
+                                    </td>
+                                </tr>
+                            
+                            </table>
+
+                    </fieldset>
+                
+                </form>
+
+                <p>@message</p>
+            
+            </div>
+
+      

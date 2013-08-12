@@ -1,0 +1,66 @@
+body {
+    background-color: #e3dbdb;
+}
+
+#container {
+    padding: 0;
+    width: 72%;
+    margin: 1em auto;
+    background-color: rgba(167, 161, 161, 0.94);
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+    
+}
+
+#head {
+    width: 100%;
+    background-image: url("/img/silver.jpg");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    image-orientation: auto;
+    height: 55px;
+    background-color: #a02222;
+    float: left;
+    margin-bottom: 0;
+    padding: 0;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+}
+
+#head p {
+    color: rgba(202, 89, 89, 0.91);
+    font-family: Arial;
+    font-size: x-large;
+    font-weight: 900;
+    text-align: center;
+}
+
+#estrutura {
+    padding: 12%;
+    margin: auto;
+    background-color: rgba(167, 161, 161, 0.94);
+    width: 40%;
+}
+
+#footer {
+    
+    background-color: #a02222;
+    text-align: center;
+    padding: 5%;
+}
+#footer p {
+    color:rgba(202, 89, 89, 0.91);
+    font-family: Arial;
+    font-size: medium;
+    font-style: italic;
+    font-weight: 800;
+    
+}
+
+#cadastro {
+    padding: 12%;
+    margin: auto;
+    background-color:rgba(167, 161, 161, 0.94);
+    width: 40%;
+}
+

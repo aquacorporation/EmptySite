@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="@Href("/css/StyleSheet.css")" rel="stylesheet" type="text/css" />
+        <title></title>
+    </head>
+    <body>
+         <!--Div principal, onde ficarão as demais divs dentro-->
+        
+
+            <!--Cabeçalho da página-->
+            <div id="head">
+                @RenderPage("/shared/_head.cshtml")
+            
+            </div>
+
+            <!--formulário de login-->
+            <div id="estrutura">
+                @RenderBody()
+            </div>
+            
+            <div id="footer">
+                @RenderPage("/shared/_footer.cshtml")
+            </div>
+            
+    </body>
+</html>

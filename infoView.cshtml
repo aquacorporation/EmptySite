@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "/shared/_main.cshtml";
+
+    var ResultadoFinal = 0;
+    if(IsPost)
+    {
+        var Valor1 = Request["txtValor1"];
+        var Valor2 = Request["txtValor2"];
+        var Operacao = Request["slcOperacao"];
+ 
+        switch(Operacao)
+        {
+            case "+":
+                ResultadoFinal = LoginClass.Soma(Valor1.AsInt(), Valor2.AsInt());
+            break;
+            case "-":
+                ResultadoFinal = LoginClass.Subtracao(Valor1.AsInt(), Valor2.AsInt());
+            break;
+            case "*":
+                ResultadoFinal = LoginClass.Multiplicacao(Valor1.AsInt(), Valor2.AsInt());
+            break;
+            case "/":
+                ResultadoFinal = LoginClass.Divisao(Valor1.AsInt(), Valor2.AsInt());
+            break;
+        }
+ 
+    }
+
+    
+}
+<h1>Operação matemática</h1>
+        <form method="post" id="FormOperacao" name="FormOperacao">
+            <table>
+                <tr>
+                    <td>
+                        Informe o primeiro valor:
+                    </td>
+                    <td>
+                        <input type="text" id="txtValor1" name="txtValor1" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Informe o segundo valor:
+                    </td>
+                    <td>
+                        <input type="text" id="txtValor2" name="txtValor2" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Selecione o tipo de operação:
+                    </td>
+                    <td>
+                        <select id="slcOperacao" name="slcOperacao">
+                            <option selected="selected">Selecione a operação</option>
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                            <option value="*">*</option>
+                            <option value="/">/</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Resultado:<p>@ResultadoFinal</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="EstiloResultado">
+                         
+                    </td>
+                    <td>
+                        <input type="submit" value="Calcular" id="btnCalcular" name="btnCalcular" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+

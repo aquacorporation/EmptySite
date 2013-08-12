@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "/shared/_main.cshtml";
+
+    var data = DateTime.Now.ToString();
+
+
+}
+
+<div id="caixa">
+    <div id="indice">
+        <ul id="primary">
+            <li class="home"><a href="/Index.cshtml">Inicio</a></li>
+
+            <li class="cad"><a href="#">Cadastros</a>
+                <ul id="sub_cad">
+                    <li class="sub_cad_func"><a href="#">Users</a></li>
+                    <li class="sub_cad_adm"><a href="#">Managers</a></li>
+                    <li class="sub_cad_unid"><a href="/cad_unidade.cshtml">Unidades</a></li>
+                    <li class="sub_cad_rota"><a href="/cad_rota.cshtml">Rotas</a></li>
+                </ul>
+            </li>
+
+            <li class="rep"><a href="#">Relatórios</a>
+                <ul id="sub_rep">
+                    <li class="sub_rep_fat"><a href="#">Faturamento</a></li>
+                </ul>
+            </li>
+            <li class="alt"><a href="#">Alterações</a>
+                <ul id="sub_alt">
+                    <li><a href="#">Transportes</a></li>
+                </ul>
+            </li>
+            <li class="plan"><a href="#">Planejamento</a>
+                <ul id="sub_plan">
+                    <li><a href="#">Transportes</a></li>
+                </ul>
+            </li>
+            <li class="esc"><a href="#">Escala</a>
+                <ul id="sub_esc">
+                    <li><a href="#">Transportes</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div> 
+    
+    <div id="chart">
+        <label>@data</label>
+        <img alt="" src="/firstchart.cshtml" />
+    
+    </div> 
+    
+    <div id="chart2">
+        <label>@data</label>
+        <img alt="" src="/secondchart.cshtml" />
+    </div> 
+</div>

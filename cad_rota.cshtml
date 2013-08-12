@@ -1,0 +1,91 @@
+﻿@{
+    Layout = "/shared/_main.cshtml";
+    
+    var db = Database.Open("silver_db");
+    var busca = "SELECT COD_UNID, DESCRICAO FROM UNIDADES";
+
+    var inserir = "INSERT INTO ROTAS (COD_UNID_ORIG, COD_UNID_DEST, DISTANCIA, VALOR_RODOTREM, VALOR_VANDERLEIA, PEDAGIO) VALUES (@0, @1, @2, @3, @4, @5)";
+    
+    var origem = 5;
+    var destino = 8;
+    var distancia = Request["txtKM"];
+    var rodotrem = Request["txtRodotrem"];
+    var vanderleia = Request["txtVanderleia"];
+    var pedagio = Request["txtPedagio"];
+
+    if(IsPost){
+        
+        if(distancia.IsEmpty()){
+            var exec = db.Execute(inserir, origem, destino, distancia, rodotrem, vanderleia, pedagio);
+        }
+        else{
+            var exec = db.Execute(inserir, origem, destino, distancia, rodotrem, vanderleia, pedagio);
+        };
+    };
+
+    
+}
+
+<div id="rotas">
+    <fieldset>
+        <legend>Cadastro de rotas</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label>Origem:</label>
+                    </td>
+                    <td>
+                        <select id="cboOrigem" name="cboOrigem" autofocus>
+                          @foreach (var row in db.Query(busca)){
+                                  <option value="@row.COD_UNID">@row.DESCRICAO</option>
+                               }
+                        </select>
+                    </td>
+                    <td>
+                        <label>Destino:</label>
+                    </td>
+                    <td>
+                        <select id="cboDestino" name="cboDestino" autofocus>
+                          @foreach (var row in db.Query(busca)){
+                               <option value="@row.COD_UNID">@row.DESCRICAO</option>
+                               }
+
+                        </select>
+                    </td>
+                    <td>
+                        <label>Distância:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="txtKM" value="" name="txtKM" size="8" /><label>km</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Viagem Rodotrem:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="txtRodotrem" value="" name="txtRodotrem" size="8" /><label>R$</label>
+                    </td>
+                    <td>
+                        <label>Viagem Vanderleia</label>
+                    </td>
+                    <td>
+                        <input type="text" id="txtVanderleia" value="" name="txtVanderleia" size="8" /><label>R$</label>
+                    </td>
+                    <td>
+                        <label>Pedágio eixo:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="txtPedagio" value="" name="txtPedagio" size="8" /><label>R$</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" id="btnInserir" value="Inserir" name="btnInserir" />
+                    </td>
+                </tr>
+            </table>
+    </fieldset>
+</div>
+

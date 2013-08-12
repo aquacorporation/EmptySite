@@ -1,0 +1,76 @@
+﻿@{
+    var db = Database.Open("silver_db");
+    var desc = Request["desc"];
+    var local = Request["local"];
+
+    if(IsPost){
+        //Lê a descrição da unidade e faz a validação, não permitindo vazio
+        desc = Request["desc"];
+        if(desc.IsEmpty()){
+            ModelState.AddError("desc","Fornecer uma descrição");
+           }
+        local = Request["local"];
+        if(local.IsEmpty()){
+            ModelState.AddError("local","Fornecer uma localidade");
+        }
+
+        if(ModelState.IsValid){
+            var strSql = "INSERT INTO UNIDADES (DESCRICAO, LOCALIDADE) VALUES (@0, @1)";
+
+            db.Execute(strSql, desc, local);
+
+        }
+    }
+    
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="StyleSheet.css">
+        <title>Silver Web</title>
+    </head>
+    <body>
+
+        <div id="container">
+        
+            <div id="head">
+
+                <p>Silver Web - Cadastro de Unidades</p>
+            
+            </div>
+
+            <div id="cadastro">
+
+                <form method="post" action="">
+
+                @Html.ValidationSummary("Error")
+                
+                <fieldset>
+                    <legend>Cadastro de Unidades</legend>
+                    <label>Descrição:</label>
+                    <input type="text" name="desc" value="@desc"><br>
+                    <label>Localidade:</label>
+                    <input type="text" name="local" value="@local"><br>
+                   <input type="submit" name="btnSalvar" value="Save" class="submit" >
+
+
+                </fieldset>
+                </form>
+
+                <datalist id="data">
+                
+                </datalist>
+            
+            </div>
+
+            <div id="footer">
+                <p>FEMSA Logística - Brasil <br>
+                Operações de Transporte 1 - Jundiaí - SP</p>
+            </div>
+        </div>
+        
+    </body>
+</html>

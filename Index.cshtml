@@ -1,0 +1,141 @@
+﻿@{ 
+    var db = Database.Open("silver_db");
+    var busca = "SELECT * FROM USUARIOS WHERE RE = @0";
+    var login = Request["txtID"];
+    var senha = Request["txtSenha"];
+
+    if(IsPost){
+
+    if(login.IsEmpty()){
+        
+    }
+    else
+    {
+        var exec = db.QuerySingle(busca, login);
+
+        var vLogin = exec.RE;
+        var vSenha = exec.SENHA;
+
+        if(vSenha == senha){
+           Response.Redirect(@Href("~/indice.cshtml"));  
+        };
+       
+    };
+   
+    };
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <title>Inicio</title>
+    </head>
+    <body>
+
+        <div id="container">
+
+        <div id="cabecalho">
+            <table class="head">
+                <tr>
+                    <td id="logo">
+                        <span class="title">Silver</span>  
+                    </td>
+
+                    <td id="vazio">
+                       
+
+                    </td>
+
+                    <td id="login">
+                            <form method="post" action="" id="login">
+                                <table class="authent">
+                                    <tr>
+                                        <td><label>Nome</label></td>
+                                        <td><label>Senha</label></td>
+                                    
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="txtID" id="txtID" value="" size="" /></td>
+                                        <td><input type="password" name="txtSenha" id="txtSenha"   size="" /></td>
+                                        <td><input type="submit" name="btnEnter" id="btnEnter" size="9" value="Entrar" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /><label>Lembrar-me</label></td>
+                                    </tr>
+
+                                </table>
+                            </form>
+                    </td>
+        
+                </tr>
+            </table>
+        </div>
+
+        <div id="conteudo">
+
+        <div id="historia">
+            <table class="parceiro">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="/img/cocacola.png" alt="" /></br>
+                            <!--<label>Coca-Cola</label>-->
+                        </td>
+
+                        <td>
+                            <img src="/img/heineken.jpg" alt="" /></br>
+                            <!--<label>Heineken</label>-->
+                        </td>
+
+                        <td>
+                            <img src="/img/bimbo.png" alt="" /></br>
+                            <!--<label>Bimbo</label>-->
+                        </td>
+
+                        <td>
+                            <img src="/img/delvalle.png" alt="" /></br>
+                            <!--<label>del Valle</label>-->
+                        </td>
+
+                    </tr>
+                </tbody>
+            
+            </table>
+        </div>
+
+        <div id="desc">
+
+            <article>
+                <h4>Qwitrog Dtrnirm</h4>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eleifend, 
+                    purus quis laoreet faucibus, ante augue malesuada mi, id rhoncus augue 
+                    lorem eget elit. Ut sollicitudin sodales purus. Phasellus libero felis, 
+                    blandit nec, commodo ut, imperdiet ut, nibh. Suspendisse potenti. Donec 
+                    ullamcorper cursus dolor. Duis vitae ipsum.
+                </p>
+                <p>
+                   Maecenas dapibus hendrerit diam. Morbi varius, massa id pretium accumsan, 
+                   nunc lorem congue libero, ut euismod metus libero id nulla. Duis posuere 
+                   odio sed velit vulputate venenatis. Suspendisse et dui ac metus auctor 
+                   fringilla. Curabitur interdum augue a pede.
+                </p>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eleifend, 
+                   purus quis laoreet faucibus, ante augue malesuada mi, id rhoncus augue lorem 
+                   eget elit. Ut sollicitudin sodales purus. Phasellus libero felis, blandit nec, 
+                   commodo ut, imperdiet ut, nibh. Suspendisse potenti. Donec ullamcorper cursus 
+                   dolor. Duis vitae ipsum.</p>
+
+            </article>
+        
+        </div>
+        </div>
+        
+        </div>
+
+        
+       
+    </body>
+</html>

@@ -1,0 +1,129 @@
+﻿@{
+    Layout = "/shared/_main.cshtml";
+
+    var db = Database.Open("silver_db");
+    var insert = "INSERT INTO UNIDADES (DESCRICAO, CIDADE, UF, ENDERECO, BAIRRO, CNPJ) VALUES (@0, @1, 'SP', @3, @4, @5)";
+
+    var descricao = Request["txtDescricao"];
+    var cidade = Request["txtCidade"];
+    var uf = Request["cboUF"];
+    var endereco = Request["txtEndereco"];
+    var bairro = Request["txtBairro"];
+    var cnpj = Request["txtCNPJ"];
+
+    if(IsPost){
+        
+        if(descricao.IsEmpty()){
+            
+        }
+        else {
+        var exec = db.Execute(insert, descricao, cidade, uf, endereco, bairro, cnpj);
+        };
+    };
+    
+}
+
+<!--Corpo da página-->
+<div id="cad_unidade">
+
+    <form action="" id="cad_unid" method="post">
+        <fieldset>
+            <legend>Cadastro de unidade</legend>
+            <table class="unidade">
+                <!--Linha 1-->
+                <tr>
+                    <!--Coluna 1-->
+                    <td>
+                        <br>
+                        <label>Descrição:</label>                    
+                    </td>
+                    <!--Coluna 2-->
+                    <td>
+                        <br>
+                        <input type="text" id="txtDescricao" value="" name="txtDescricao" />
+                    </td>
+                    <!--Coluna 3-->
+                    <td>
+                        <br>
+                        <label>UF:</label>
+                    </td>
+                    <!--Coluna 4-->
+                    <td>
+                        <br>
+                        <select id="cboUF">
+                            <option></option>
+                            <option>AM</option>
+                            <option>AC</option>
+                            <option value="">AL</option>
+                            <option value="">BA</option>
+                            <option value="">CE</option>
+                            <option value="">DF</option>
+                            <option value="">ES</option>
+                            <option value="">GO</option>
+                            <option value="">MS</option>
+                            <option value="">MT</option>
+                            <option value="">PA</option>
+                            <option value="">PR</option>
+                            <option value="">RN</option>
+                            <option value="">RS</option>
+                            <option value="">SE</option>
+                            <option value="">SC</option>
+                            <option value="">SP</option>
+                            <option value="">TO</option>
+                            
+                        </select>
+                    </td> 
+                    <!--Coluna 5-->
+                    <td>
+                        <label>Cidade:</label>
+                    </td>
+                    <!--Coluna 6-->
+                    <td>
+                        <input type="text" id="txtCidade" value="" name="txtCidade" />
+                    </td>
+                <!--Encerra linha 1-->
+                </tr>
+
+                <!--Inicia a linha 2-->
+                <tr>
+                    <!--Coluna 1-->
+                    <td>
+                        <label>Endereço:</label>
+                    </td>
+                    <!--Coluna 2-->
+                    <td>
+                        <input type="text" id="txtEndereco" value="" name="txtEndereco" />
+                    </td>
+                    <!--Coluna 3-->
+                    <td>
+                        <label>Bairro:</label>
+                    </td>
+                    <!--Coluna 4-->
+                    <td>
+                        <input type="text" id="txtBairro" value="" name="txtBairro" />
+                    </td>
+                    <!--Coluna 5-->
+                    <td>
+                        <label>Cnpj:</label>
+                    </td>
+                    <!--Coluna 6-->
+                    <td>
+                        <input type="text" id="txtCNPJ" value="" name="txtCNPJ" />
+                    </td>
+                <!--Encerra linha 2-->
+                </tr>
+                <!--Inicia linha 3-->
+                <tr>
+                    <!--Coluna 1-->
+                    <td>
+                        <input type="submit" id="btnInserir" value="Inserir" name="btnInserir" />
+                    </td>
+                </tr>
+            
+            </table>
+        
+        </fieldset>
+    
+    </form>
+
+</div>
